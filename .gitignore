@@ -1,0 +1,68 @@
+*.pth
+*.zip
+*.pyc
+*.DS_Store
+/ast/pretrained_models
+/ast/venvast
+
+/OKDPH/ckpt/
+/OKDPH/log/
+/OKDPH/dataset
+/OKDPH/experiment/landscape/figs/
+/OKDPH/experiment/generalization_bound/
+/OKDPH/experiment/show/
+/OKDPH/log_rebuttal/
+/OKDPH/src/trash/
+/OKDPH/src/glove/
+
+
+.vscode/
+.venv/
+.eggs/
+env/
+*.DS_Store
+.coverage
+/yolo_tracking/htmlcov/
+# interpreter bytecode
+__pycache__/
+
+# experiment results
+/yolo_tracking/runs/
+/yolo_tracking/videos/
+
+# Downloaded weights
+/yolo_tracking/weights/*.pt
+/yolo_tracking/weights/*.torchscript
+/yolo_tracking/weights/*.onnx
+/yolo_tracking/weights/*_openvino_model
+/yolo_tracking/weights/*.engine
+/yolo_tracking/weights/*.tflite
+
+# evaluation tools folder
+/yolo_tracking/val_utils/
+
+# zip files
+/yolo_tracking/*.zip
+
+# exports
+/yolo_tracking/*_openvino_model
+/yolo_tracking/*.torchscript
+/yolo_tracking/*.pt
+/yolo_tracking/*.pth
+/yolo_tracking/*.onnx
+/yolo_tracking/*.engine
+
+# interactive plots
+/yolo_tracking/*.html
+
+# tf models
+/yolo_tracking/*saved_model/
+/yolo_tracking/tf_models/
+
+# distribution / packaging
+/yolo_tracking/build/
+/yolo_tracking/dist/
+*.egg-info/
+
+# cmc debug images
+/yolo_tracking/boxmot/motion/cmc/*.jpg
