@@ -68,3 +68,5 @@ __pycache__/
 /yolo_tracking/boxmot/motion/cmc/*.jpg
 
 zr-obp/
+dataset/
+log/
