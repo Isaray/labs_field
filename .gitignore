@@ -70,3 +70,8 @@ __pycache__/
 zr-obp/
 dataset/
 log/
+
+/Lookaround/dataset/
+/Lookaround/out/
+*.pth
+*.ckpt
