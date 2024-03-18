@@ -7,7 +7,7 @@
 
 /OKDPH/ckpt/
 /OKDPH/log/
-/OKDPH/dataset
+/OKDPH/dataset/
 /OKDPH/experiment/landscape/figs/
 /OKDPH/experiment/generalization_bound/
 /OKDPH/experiment/show/
