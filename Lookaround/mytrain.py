@@ -892,30 +892,34 @@ def train_imagenet_lookaroundselect(cfg, is_image_net=True):
         correct1 = 0
         correct5 = 0
         total = 0
-        tbar = tqdm(range(len(trainloaders[0])))
+        #随机打乱一个list
+        idx_list=[i for i in range(len(trainloaders[0]))]
+        random.shuffle(idx_list)
+        tbar = tqdm(idx_list)
         s = time.time()
         net_time = 0
         iter_time = 0
         print("len = ", len(trainloaders[0]))
         # 将 DataLoader 转换为列表
         validdataloader_list = list(validloader)
+        batch_idx_count=0
         for batch_idx in tbar:
             train_iter_list=[train_iter1, train_iter2, train_iter3,train_iter4, train_iter5]
             if 'rand' in args.tag:
                 num_samples = 3  # 指定要选取的元素数量
                 train_iter_list = random.sample(train_iter_list, num_samples)
             if 'select' in args.tag:
-                if batch_idx<10:
+                if batch_idx_count<10:
                     num_samples = 5  # 指定要选取的元素数量
                     TRANSFORM_list_all.append(TRANSFORM_list)
                     TRANSFORM_list_new=TRANSFORM_list
                     TRANSFORM_score=[]
-                    if batch_idx==0:
+                    if batch_idx_count==0:
                         TRANSFORM_score=[0,0,0,0,0]
                     else:
                         for method in TRANSFORM_list:
                             r=np.mean(TRANSFORM_dict[method])
-                            t=batch_idx+1
+                            t=batch_idx_count+1
                             n=len(TRANSFORM_dict[method])
                             ucb=r+np.sqrt(2*np.log(t)/n)
                             TRANSFORM_score.append(ucb)
@@ -926,7 +930,7 @@ def train_imagenet_lookaroundselect(cfg, is_image_net=True):
                     TRANSFORM_score=[]
                     for method in TRANSFORM_list:
                         r=np.mean(TRANSFORM_dict[method])
-                        t=batch_idx+1
+                        t=batch_idx_count+1
                         n=len(TRANSFORM_dict[method])
                         ucb=r+np.sqrt(2*np.log(t)/n)
                         TRANSFORM_score.append(ucb)
@@ -979,8 +983,10 @@ def train_imagenet_lookaroundselect(cfg, is_image_net=True):
             net_time += time.time() - s
             s = time.time()
             tbar.set_postfix({"lr": optimizer.state_dict()['param_groups'][0]['lr'], "loss": round(
-                train_loss/(batch_idx+1), 3), "Acc1": round(100.*correct1/total, 3), "Acc5": round(100.*correct5/total, 3), "iter_time": iter_time, "net_time": net_time})
-
+                train_loss/( +1), 3), "Acc1": round(100.*correct1/total, 3), "Acc5": round(100.*correct5/total, 3), "iter_time": iter_time, "net_time": net_time})
+            batch_idx_count+=1
+        #后面log就是所有轮次的个数，不用改了
+        batch_idx=batch_idx_count-1
         logger.info(
             f"lr: {optimizer.state_dict()['param_groups'][0]['lr']},loss:{round(train_loss/(batch_idx+1),3)},acc1:{round(100.*correct1/total,3)},acc5:{round(100.*correct5/total,3)}")
 
