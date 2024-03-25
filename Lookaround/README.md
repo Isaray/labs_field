@@ -82,6 +82,9 @@ python mytrain.py --yaml_path='resnet50_cifar100.yaml' --train_mode='TRAIN_LOOKA
 
 python mytrain.py --yaml_path='resnet50_cifar100.yaml' --train_mode='TRAIN_LOOKAROUNDSELECT' --cuda_id=0 --data_dir='dataset/' --out='./out/' --optimizer='LookaroundSelect' --tag='five-select-1-shuffle'  --tnum=3
 
+python mytrain.py --yaml_path='resnet50_cifar100.yaml' --train_mode='TRAIN_LOOKAROUNDSELECT' --cuda_id=0 --data_dir='dataset/' --out='./out/' --optimizer='LookaroundSelect' --tag='five-select-1-shuffle-seed1'  --tnum=3 --seed 1
+python mytrain.py --yaml_path='resnet50_cifar100.yaml' --train_mode='TRAIN_LOOKAROUNDSELECT' --cuda_id=0 --data_dir='dataset/' --out='./out/' --optimizer='LookaroundSelect' --tag='five-select-1-shuffle-seed1'  --tnum=3 --seed 2
+
 python train.py --yaml_path=<YAML_PATH> \
                 --train_mode=<TRAIN_MODE> \
                 --cuda_id=<CUDA_ID> \
