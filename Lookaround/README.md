@@ -21,7 +21,9 @@ networks starting from one common checkpoint with various data augmentation.
 
 * PyTorch 1.8 or higher
 * Python 3.6
-
+```
+pip3 install torch torchvision torchaudio opencv-python IPython timm yacs
+```
 
 ## Datasets
 
