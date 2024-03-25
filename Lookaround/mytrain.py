@@ -31,6 +31,8 @@ def parse_option():
     parser.add_argument("--gpu_ids", type=str, default="")
     parser.add_argument('--pretrained', type=bool, default=None)
     parser.add_argument('--tag', type=str, default="five")
+    parser.add_argument('--seed', type=int, default=42, help="random seed")
+
 
     args = parser.parse_args()
 
@@ -48,6 +50,8 @@ def parse_option():
     cfg.MODEL.DEVICE_ID = args.cuda_id
     cfg.SOLVER.BATCH_SIZE = args.batch_size
     cfg.DATA_DIR = args.data_dir
+    cfg.SEED = args.seed
+
     if args.out != '':
         cfg.OUTPUT_DIR = args.out
     if cfg.TRAIN_MODE == 'TRAIN_LOOKAROUND'or cfg.TRAIN_MODE == 'TRAIN_LOOKAROUNDSELECT':
@@ -894,7 +898,7 @@ def train_imagenet_lookaroundselect(cfg, is_image_net=True):
         total = 0
         #随机打乱一个list
         idx_list=[i for i in range(len(trainloaders[0]))]
-        random.shuffle(idx_list)
+        # random.shuffle(idx_list)
         tbar = tqdm(idx_list)
         s = time.time()
         net_time = 0
